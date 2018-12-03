@@ -9,8 +9,8 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Client'), ['action' => 'edit', $client->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Client'), ['action' => 'delete', $client->id], ['confirm' => __('Are you sure you want to delete # {0}?', $client->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Clients'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Client list'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
 <div class="clients view large-10 medium-9 columns content">

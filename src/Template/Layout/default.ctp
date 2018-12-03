@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Shekenz Tattoo Manager';
+$cakeDescription = 'Heart Of Oak Tattoo Manager';
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,7 +53,7 @@ $cakeDescription = 'Shekenz Tattoo Manager';
 	        </h3>
         </div>
         <div class="top-bar-section">
-            Shekenz
+            <?= $cakeDescription ?>
         </div>
     </nav>
     <? endif; ?>
