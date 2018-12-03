@@ -587,4 +587,8 @@ table tr:nth-of-type(even) {
     background-color: #a00;
 }
 
+.hidden {
+	display: none;
+}
+
 

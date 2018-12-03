@@ -1,3 +1,7 @@
+# Custom #
+##########
+/webroot/css/style_backup.css
+
 # CakePHP specific files #
 ##########################
 /config/app.php

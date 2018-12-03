@@ -11,6 +11,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('About'), ['controller' => 'pages', 'action' => 'display', 'about']) ?></li>
     </ul>
 </nav>
 <div class="clients index large-10 medium-9 columns content">
