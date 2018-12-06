@@ -52,7 +52,7 @@ class ClientsTable extends Table
             ->scalar('name')
             ->maxLength('name', 64)
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+			->allowEmpty('name');
 
         $validator
             ->scalar('firstname')

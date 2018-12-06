@@ -26,7 +26,6 @@ $cakeDescription = 'Heart Of Oak Tattoo Manager';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-
 	<?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
 	
