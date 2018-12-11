@@ -6,6 +6,7 @@
 </nav>
 <div class="clients form large-11 medium-9 columns content">
 	<?
+	debug($clients);
 	echo $this->Form->create(false);
 		echo $this->Form->control('to', [
 			'type' => 'text'

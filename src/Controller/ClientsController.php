@@ -26,7 +26,11 @@ class ClientsController extends AppController
         	'order' => [
             'Clients.creationdate' => 'desc'
         ]]);
-
+		
+		$birthdayquery = $this->Clients->find('all', ['fields' => ['id', 'name', 'firstname']])->where(['birthdate =' => Time::now() ]);
+		$birthdayboyz = $birthdayquery->all();
+		
+		$this->set('birthdays', $birthdayboyz->toArray());
         $this->set(compact('clients'));
     }
 
@@ -116,8 +120,13 @@ class ClientsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    public function groupMailing()
+    public function groupMailing($id = null)
     {
+        $query = $this->Clients->find('all', ['fields' => ['id', 'email']])
+        ->where(['Clients.email !=' => '' ]);
         
+		$result = $query->all();
+		$clients = $result->toArray();
+        $this->set('clients', $clients);
     }
 }

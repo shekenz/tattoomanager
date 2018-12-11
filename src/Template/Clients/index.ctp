@@ -11,11 +11,26 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
+        <!-- <li><?= $this->Html->link(__('Group Mailing'), ['action' => 'groupMailing']) ?></li> -->
         <li><?= $this->Html->link(__('About'), ['controller' => 'pages', 'action' => 'display', 'about']) ?></li>
     </ul>
 </nav>
 <div class="clients index large-10 medium-9 columns content">
     <h3><?= __('Clients') ?></h3>
+    
+	<!-- BIRTHDAYS -->
+    <? if(!empty($birthdays)):
+	    $birthdaysStr = ''; ?>
+    <div id="birthdays">Today's birthdays :
+    	<? foreach($birthdays as $item) {
+	    	$birthdaysStr .= $this->Html->link($item->name.' '.$item->firstname, ['action' => 'view', $item->id]).', ';
+    	} ?>
+    <?  $birthdaysStr = rtrim($birthdaysStr, ', ');
+		echo $birthdaysStr; ?>
+	</div>
+
+	<? endif; ?>
+    
     <table cellpadding="0" cellspacing="0" class="table-custom">
         <thead>
             <tr>

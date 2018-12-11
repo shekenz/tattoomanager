@@ -591,4 +591,10 @@ table tr:nth-of-type(even) {
 	display: none;
 }
 
+#birthdays {
+	background: #ffdc10;
+	padding: 5px 10px;
+	margin: 20px 0px;
+}
+
 
