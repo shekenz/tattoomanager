@@ -26,7 +26,7 @@
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('gender') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('birthdate', 'Age') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('type') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('artist') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('rating', 'R') ?></th>
                 <th scope="col" class="actions last"><?= __('Actions') ?></th>
             </tr>

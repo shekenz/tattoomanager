@@ -47,11 +47,11 @@
             <td class="last"><?= $client->gender ? __('Man') : __('Woman'); ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Type') ?></th>
+            <th scope="row"><?= __('Artist') ?></th>
             <td class="last"><?
 	            $typeList = ['Shop', 'Gil', 'Shekenz', 'Vincent', 'Cazimir', 'Bleck', 'Guest'];
-		            if (isset($client->type)) {
-		            	echo $typeList[$client->type];
+		            if (isset($client->artist)) {
+		            	echo $typeList[$client->artist];
 		            }
 		        ?>
 		    </td>
