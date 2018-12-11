@@ -26,11 +26,6 @@ class ClientsController extends AppController
         	'order' => [
             'Clients.creationdate' => 'desc'
         ]]);
-		
-		$birthdayquery = $this->Clients->find('all', ['fields' => ['id', 'name', 'firstname']])->where(['birthdate =' => Time::now() ]);
-		$birthdayboyz = $birthdayquery->all();
-		
-		$this->set('birthdays', $birthdayboyz->toArray());
         $this->set(compact('clients'));
     }
 

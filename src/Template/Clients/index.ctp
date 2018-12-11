@@ -19,16 +19,19 @@
     <h3><?= __('Clients') ?></h3>
     
 	<!-- BIRTHDAYS -->
-    <? if(!empty($birthdays)):
-	    $birthdaysStr = ''; ?>
-    <div id="birthdays">Today's birthdays :
-    	<? foreach($birthdays as $item) {
-	    	$birthdaysStr .= $this->Html->link($item->name.' '.$item->firstname, ['action' => 'view', $item->id]).', ';
-    	} ?>
-    <?  $birthdaysStr = rtrim($birthdaysStr, ', ');
-		echo $birthdaysStr; ?>
+	<? $birthdaysStr = '';
+		$today = Time::now()->hour(0)->minute(0)->second(0);
+	foreach($clients as $client) {
+    	if ($client->birthdate == $today) {
+	    	$birthdaysStr .= $this->Html->link($client->name.' '.$client->firstname, ['action' => 'view', $client->id]).', ';
+    	} 	
+	}
+	$birthdaysStr = rtrim($birthdaysStr, ', ');
+	
+	if(!empty($birthdaysStr)): ?>
+	<div id="birthdays">Today's birthdays :
+	<?= $birthdaysStr; ?>
 	</div>
-
 	<? endif; ?>
     
     <table cellpadding="0" cellspacing="0" class="table-custom">
