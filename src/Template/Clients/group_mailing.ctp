@@ -6,20 +6,24 @@
 </nav>
 <div class="clients form large-11 medium-9 columns content">
 	<?
-	debug($clients);
-	echo $this->Form->create(false);
+	$mailList = ['' => ''];
+	foreach($clients as $client) {		
+		$clientName = ltrim(rtrim($client->firstname.' '.$client->name));
+		$mailList[$client->email] = $clientName;
+	}
+	echo $this->Form->create($mail); ?>
+	<fieldset>
+        <legend><?= 'Group Mailing' ?></legend>
+        <?
 		echo $this->Form->control('to', [
-			'type' => 'text'
-		]);
-		echo $this->Form->control('cc', [
-			'type' => 'text'
-		]);
-		echo $this->Form->control('subject', [
-			'type' => 'text'
-		]);
-		echo $this->Form->control('message', [
-			'type' => 'textarea'
-		]);
+            	'type' => 'select',
+            	'options' => $mailList
+            ]);
+		echo $this->Form->control('title');
+		echo $this->Form->control('message');
+		?>
+	</fieldset>
+	<?
 	echo $this->Form->button('Send');
     echo $this->Form->end();
 ?>

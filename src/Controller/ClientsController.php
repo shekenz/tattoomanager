@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\I18n\Time;
 use Session;
+use App\Form\MailForm;
 
 /**
  * Clients Controller
@@ -117,11 +118,21 @@ class ClientsController extends AppController
     
     public function groupMailing($id = null)
     {
-        $query = $this->Clients->find('all', ['fields' => ['id', 'email']])
-        ->where(['Clients.email !=' => '' ]);
+	    $mail = new MailForm();
+	    if($this->request->is('post')) {
+		    if($mail->execute($this->request->getData())) {
+			    $this->Flash->success('Mail successfully sent');
+		    } else {
+			    $this->Flash->error('Mail couldn\'t be sent');
+		    }
+		    
+	    }
+	    
+        $query = $this->Clients->find('all', ['fields' => ['id', 'email', 'name', 'firstname']])
+        ->where(['Clients.email !=' => '' ])->order(['firstname' => 'ASC'])->order(['name' => 'ASC']);
         
-		$result = $query->all();
-		$clients = $result->toArray();
+		$clients = $query->toArray();
         $this->set('clients', $clients);
+        $this->set('mail', $mail);
     }
 }
