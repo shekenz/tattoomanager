@@ -1,10 +1,10 @@
-<nav class="large-1 medium-3 columns" id="actions-sidebar">
+<nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Clients'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="clients form large-11 medium-9 columns content">
+<div class="clients form large-10 medium-9 columns content">
 	<?
 	$mailList = ['' => ''];
 	foreach($clients as $client) {		
