@@ -11,24 +11,27 @@ class MailForm extends Form
 {
 	
 	protected function _buildSchema(Schema $schema) {
-		return $schema->addField('to', 'string')->addField('title', 'string')->addField('message', 'text');
+		return $schema	->addField('to', 'string')
+						->addField('title', 'string')
+						->addField('message', 'text');
 	}
 	
 	protected function _buildValidator(Validator $validator) {
-		$validator	->requirePresence(['to', 'message'])
+		$validator	->requirePresence(['message', 'to'])
+					->notEmpty(['to'])
 					->requirePresence('title', true, 'The title needs to be present')
-					->email('to', 'false', 'Must be a valid email')
 					->minLength('title', 5, 'Title must be at least 5 characters long. Be creative !');
 		
 		return $validator;
 	}
 	
 	protected function _execute(array $data) {
-        	$email = new Email('shekenz');
-			$email	->setSender('heartofoaktattoo@gmail.com')
-					->setTo($data['to'])
+		foreach($data['to'] as $mailAddress) {
+        	$email = new Email('default');
+			$email	->setTo($mailAddress)
 					->setSubject($data['title'])
 					->send($data['message']);
+		}
         return true;
     }
 }

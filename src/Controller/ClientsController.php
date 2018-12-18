@@ -119,20 +119,56 @@ class ClientsController extends AppController
     public function groupMailing($id = null)
     {
 	    $mail = new MailForm();
+	    
+	    if($this->request->is('get')) {
+			$query = $this->Clients->find('all', ['fields' => ['id', 'email', 'name', 'firstname']])	
+				->where(['Clients.email !=' => '' ])
+				->order(['firstname' => 'ASC'])
+				->order(['name' => 'ASC']);
+	        
+			$clients = $query->toArray();			
+			
+			$mailList = '';
+			foreach($clients as $client) {		
+				$mailList .= $client->email.', ';
+			}
+			$mailList = rtrim($mailList, ', ');
+	
+	        $this->set('clients', $clients);
+	        $this->set('mail', $mail);
+	        $this->set('mailList', $mailList);
+		}
+	    
 	    if($this->request->is('post')) {
-		    if($mail->execute($this->request->getData())) {
+		    $dataReceived = $this->request->getData();
+		    
+		    // $mailList cleaning
+		    $mailListArray = explode(',', $dataReceived['to']);
+		    foreach($mailListArray as $index => $item) {
+			    $mailListArray[$index] = trim($item);
+		    }
+		    while($key = array_search('', $mailListArray)) {
+				unset($mailListArray[$key]);
+			}
+			$mailListArray = array_values($mailListArray);
+			// ------------------------
+		    
+		    // $this->set('toDebug', [
+// 			    $dataReceived,
+// 			    $mailListArray
+// 		    ]);
+		    
+		    $this->set('mailList', $dataReceived['to']);
+		    $dataReceived['to'] = $mailListArray;
+		    
+		    if($mail->execute($dataReceived)) {
 			    $this->Flash->success('Mail successfully sent');
 		    } else {
 			    $this->Flash->error('Mail couldn\'t be sent');
 		    }
 		    
+		    $this->set('mail', $mail);
+		    
 	    }
-	    
-        $query = $this->Clients->find('all', ['fields' => ['id', 'email', 'name', 'firstname']])
-        ->where(['Clients.email !=' => '' ])->order(['firstname' => 'ASC'])->order(['name' => 'ASC']);
-        
-		$clients = $query->toArray();
-        $this->set('clients', $clients);
-        $this->set('mail', $mail);
     }
 }
