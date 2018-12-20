@@ -135,7 +135,6 @@ class ClientsController extends AppController
 			$mailList = rtrim($mailList, ', ');
 	
 	        $this->set('clients', $clients);
-	        $this->set('mail', $mail);
 	        $this->set('mailList', $mailList);
 		}
 	    
@@ -163,12 +162,12 @@ class ClientsController extends AppController
 		    
 		    if($mail->execute($dataReceived)) {
 			    $this->Flash->success('Mail successfully sent');
+			    return $this->redirect(['action' => 'index']);
 		    } else {
 			    $this->Flash->error('Mail couldn\'t be sent');
 		    }
 		    
-		    $this->set('mail', $mail);
-		    
 	    }
+	$this->set('mail', $mail);
     }
 }
