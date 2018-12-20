@@ -12,6 +12,7 @@ class MailForm extends Form
 	
 	protected function _buildSchema(Schema $schema) {
 		return $schema	->addField('to', 'string')
+						->addField('subject', 'string')
 						->addField('title', 'string')
 						->addField('message', 'text');
 	}
@@ -19,8 +20,8 @@ class MailForm extends Form
 	protected function _buildValidator(Validator $validator) {
 		$validator	->requirePresence(['message', 'to'])
 					->notEmpty(['to'])
-					->requirePresence('title', true, 'The title needs to be present')
-					->minLength('title', 5, 'Title must be at least 5 characters long. Be creative !');
+					->requirePresence('subject', true, 'The subject needs to be present')
+					->minLength('subject', 5, 'Subject must be at least 5 characters long. Be creative !');
 		
 		return $validator;
 	}
@@ -29,7 +30,30 @@ class MailForm extends Form
 		foreach($data['to'] as $mailAddress) {
         	$email = new Email('default');
 			$email	->setTo($mailAddress)
-					->setSubject($data['title'])
+					->template('view', 'layout')
+					->emailFormat('html')
+					->attachments([
+						'hoot_logo_mark.jpg' => [
+							'file' => 'img/mail/hoot_logo_mark_500.jpg',
+							'mimetype' => 'image/jpeg',
+							'contentId' => 'hootlogo',
+							'contentDisposition' => 'inline'
+							],
+						'instagram-logo.png' => [
+							'file' => 'img/mail/instagram-logo.png',
+							'mimetype' => 'image/png',
+							'contentId' => 'instalogo',
+							'contentDisposition' => 'inline'
+							],
+						'facebook-logo.png' => [
+							'file' => 'img/mail/facebook-logo.png',
+							'mimetype' => 'image/png',
+							'contentId' => 'fblogo',
+							'contentDisposition' => 'inline'
+							]
+						])
+					->setViewVars(['title' => $data['title']])
+					->setSubject($data['subject'])
 					->send($data['message']);
 		}
         return true;

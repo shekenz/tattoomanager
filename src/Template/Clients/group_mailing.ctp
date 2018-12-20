@@ -179,6 +179,7 @@
 	<?= $this->Form->control('to', [
 		'default' => $mailList
 	]) ?>
+	<?= $this->Form->control('subject') ?>
 	<?= $this->Form->control('title') ?>
 	<?= $this->Form->control('message') ?>
 	</fieldset>
