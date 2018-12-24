@@ -18,7 +18,7 @@ class MailForm extends Form
 	}
 	
 	protected function _buildValidator(Validator $validator) {
-		$validator	->requirePresence(['message', 'to'])
+		$validator	->requirePresence(['to'])
 					->notEmpty(['to'])
 					->requirePresence('subject', true, 'The subject needs to be present')
 					->minLength('subject', 5, 'Subject must be at least 5 characters long. Be creative !');
@@ -30,13 +30,13 @@ class MailForm extends Form
 		foreach($data['to'] as $mailAddress) {
         	$email = new Email('default');
 			$email	->setTo($mailAddress)
-					->template('view', 'layout')
+					->template('view', 'christmas')
 					->emailFormat('html')
 					->attachments([
-						'hoot_logo_mark.jpg' => [
-							'file' => 'img/mail/hoot_logo_mark_500.jpg',
+						'christmas_card.jpg' => [
+							'file' => 'img/mail/christmas_card.jpg',
 							'mimetype' => 'image/jpeg',
-							'contentId' => 'hootlogo',
+							'contentId' => 'christmascard',
 							'contentDisposition' => 'inline'
 							],
 						'instagram-logo.png' => [
