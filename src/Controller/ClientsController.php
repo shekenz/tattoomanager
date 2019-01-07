@@ -121,10 +121,15 @@ class ClientsController extends AppController
 	    $mail = new MailForm();
 	    
 	    if($this->request->is('get')) {
-			$query = $this->Clients->find('all', ['fields' => ['id', 'email', 'name', 'firstname']])	
-				->where(['Clients.email !=' => '' ])
-				->order(['firstname' => 'ASC'])
-				->order(['name' => 'ASC']);
+		    if($id) {
+			    $query = $this->Clients->find()->where(['Clients.id =' => $id]);
+		    }
+		    else {
+				$query = $this->Clients->find('all', ['fields' => ['id', 'email', 'name', 'firstname']])	
+					->where(['Clients.email !=' => '' ])
+					->order(['firstname' => 'ASC'])
+					->order(['name' => 'ASC']);
+			}
 	        
 			$clients = $query->toArray();			
 			

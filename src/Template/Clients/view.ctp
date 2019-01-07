@@ -28,7 +28,7 @@
 -->
 		<tr>
             <th scope="row"><?= __('Mail') ?></th>
-            <td class="last"><?= $this->Html->link(h($client->email), "mailto:".h($client->email), ['class' => 'obvious']) ?></td>
+            <td class="last"><?= $this->Html->link(h($client->email), ['action' => 'groupMailing', $client->id], ['class' => 'obvious']) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Phone') ?></th>
