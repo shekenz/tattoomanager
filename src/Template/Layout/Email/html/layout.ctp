@@ -16,7 +16,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="padding-left: 15px; padding-right: 15px;">
+							<td style="padding-left: 15px; padding-right: 15px;" align="center">
 								<table>
 									<tr>
 										<td align="center">
@@ -63,7 +63,7 @@
 								<hr>
 								<table width="500px" border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td align="center" style="padding-bottom: 10px; padding-left: 10px; padding-right: 10px; font-size: 10px; color:#999999">You received this email because you gave us your email address personally. We saved it in our client database with your authorization. We are not using any automated subscription method. If you want to be removed from our database, please respond to this email and explain it to us.<br>We personally read all of your emails with care.</td>
+										<td align="center" style="padding-bottom: 10px; padding-left: 10px; padding-right: 10px; font-size: 10px; color:#999999">You received this email because you gave us your email address personally. We saved it in our client database with your authorization. We are not using any automated subscription method. If you want to be removed from our database, please respond to this email and explain it to us. We personally read all of your emails with care.</td>
 									</tr>
 								</table>
 							</td>

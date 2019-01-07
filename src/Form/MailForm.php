@@ -30,13 +30,13 @@ class MailForm extends Form
 		foreach($data['to'] as $mailAddress) {
         	$email = new Email('default');
 			$email	->setTo($mailAddress)
-					->template('view', 'christmas')
+					->template('view', 'layout')
 					->emailFormat('html')
 					->attachments([
-						'christmas_card.jpg' => [
-							'file' => 'img/mail/christmas_card.jpg',
+						'hoot_logo_mark_500.jpg' => [
+							'file' => 'img/mail/hoot_logo_mark_500.jpg',
 							'mimetype' => 'image/jpeg',
-							'contentId' => 'christmascard',
+							'contentId' => 'hootlogo',
 							'contentDisposition' => 'inline'
 							],
 						'instagram-logo.png' => [
