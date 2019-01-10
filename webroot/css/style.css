@@ -530,6 +530,14 @@ a.obvious {
     text-decoration: underline;
 }
 
+a.popup {
+	font-weight: bold;
+}
+
+a.popup:hover {
+	text-decoration: none;
+}
+
 th a {
 	color: black;
 }
