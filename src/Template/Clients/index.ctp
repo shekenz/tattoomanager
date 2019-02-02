@@ -56,7 +56,7 @@
 <!--                 <td><?= h($client->name) ?></td> -->
                 <td><?= $this->Html->link(h($client->firstname)." ".h($client->name), ['action' => 'view', $client->id]) ?></td>
                 <td><?= $this->Html->link(h($client->phone), "tel:".h($client->phone), ['class' => 'obvious']) ?></td>
-                <td><?= $this->Html->link(h($client->email), ['action' => 'groupMailing', $client->id], ['class' => 'obvious']) ?>&nbsp;<?= $this->Html->link('&#8682;', "mailto:".h($client->email), ['class' => 'popup', 'escape' => false]) ?></td>
+                <td><?= $this->Html->link(h($client->email), ['action' => 'groupMailing', $client->id]) ?>&nbsp;&nbsp;<?= $this->Html->link('<i class="fas fa-external-link-alt"></i>', "mailto:".h($client->email), ['escape' => false]) ?></td>
                 <td><?= $client->gender ? 'Man' : 'Woman'; ?></td>
                 <td><?
 					if ($client->birthdate) {

@@ -512,22 +512,10 @@ div.message.hidden {
 }
 
 a:hover {
-    color: #15848F;
+    /* color: #16858f; */
+    color : #c22626;
     text-decoration: underline;
     
-}
-
-a {
-    color: #1798A5;
-}
-
-a.obvious:hover {
-    color: #1798A5;
-}
-
-a.obvious {
-    color: black;
-    text-decoration: underline;
 }
 
 a.popup {
