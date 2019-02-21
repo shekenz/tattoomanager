@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Core\Configure;
 
 /**
  * Clients Model
@@ -106,5 +107,14 @@ class ClientsTable extends Table
     {
         //$rules->add($rules->isUnique(['email']));
         return $rules;
+    }
+    
+    // Database connection configuration
+    public static function defaultConnectionName() {
+	    if (Configure::read('App.defaultConnection')) {
+        	return Configure::read('App.defaultConnection');
+        } else {
+	        return 'default';
+        }
     }
 }
