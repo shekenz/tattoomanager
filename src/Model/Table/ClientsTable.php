@@ -52,8 +52,8 @@ class ClientsTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 64)
-            ->requirePresence('name', 'create')
-			->allowEmpty('name');
+            ->requirePresence('name', 'create');
+	    //->allowEmpty('name');
 
         $validator
             ->scalar('firstname')
@@ -67,8 +67,8 @@ class ClientsTable extends Table
             ->allowEmpty('phone');
 
         $validator
-            ->email('email')
-            ->allowEmpty('email');
+            ->email('email');
+            //->allowEmpty('email');
 
         $validator
             ->date('birthdate')
