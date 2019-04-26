@@ -26,7 +26,7 @@
 									<tr>
 										<td style="font-size:large;">
 											<? if($attachedimage) : ?>
-											<p align="center"><img src="cid:attachedimage" alt= "attachement" style="display:block;margin-bottom:20px;"></p>
+											<p align="center" style="padding-bottom:20px;"><img src="cid:attachedimage" alt= "attachement" style="display:block;margin-bottom:20px;"></p>
 											<? endif; ?>
 											<p><?= $this->fetch('content') ?></p>
 										</td>
