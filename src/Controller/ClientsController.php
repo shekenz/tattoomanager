@@ -145,7 +145,7 @@ class ClientsController extends AppController
 	    
 	    if($this->request->is('post')) {
 		    $dataReceived = $this->request->getData();
-		    
+
 		    // $mailList cleaning
 		    $mailListArray = explode(',', $dataReceived['to']);
 		    foreach($mailListArray as $index => $item) {
@@ -156,11 +156,6 @@ class ClientsController extends AppController
 			}
 			$mailListArray = array_values($mailListArray);
 			// ------------------------
-		    
-		    // $this->set('toDebug', [
-// 			    $dataReceived,
-// 			    $mailListArray
-// 		    ]);
 		    
 		    $this->set('mailList', $dataReceived['to']);
 		    $dataReceived['to'] = $mailListArray;

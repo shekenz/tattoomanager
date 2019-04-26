@@ -9,7 +9,7 @@
 	<? /* $this->Form->setTemplates([
 		'inputContainer' => '<div class="input {{type}}{{required}} {{state}} {{float}}">{{content}}</div>'
 	]); */ ?>
-	<?= $this->Form->create($mail) ?>
+	<?= $this->Form->create($mail, ['type' => 'file']) ?>
 	<fieldset id="filterFieldset" class="hidden">
         <legend><?= __('Recipient rule') ?></legend>
         <div class="floatWrapper">
@@ -182,6 +182,7 @@
 	<?= $this->Form->control('subject') ?>
 	<?= $this->Form->control('title') ?>
 	<?= $this->Form->control('message') ?>
+	<?= $this->Form->control('image', ['type' => 'file']) ?>
 	</fieldset>
 	
 	<?= $this->Form->button('Send') ?>
