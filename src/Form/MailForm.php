@@ -30,7 +30,7 @@ class MailForm extends Form
 		foreach($data['to'] as $mailAddress) {
         	$email = new Email('default');
 			$email	->setTo($mailAddress)
-					->template('view', 'layout')
+					->template('view', 'birthday')
 					->emailFormat('html')
 					->attachments([
 						'hoot_logo_mark_500.jpg' => [
@@ -50,7 +50,13 @@ class MailForm extends Form
 							'mimetype' => 'image/png',
 							'contentId' => 'fblogo',
 							'contentDisposition' => 'inline'
-							]
+							],
+						'hoottt_birthday.gif' => [
+							'file' => 'img/mail/hoottt_birthday.gif',
+							'mimetype' => 'image/gif',
+							'contentId' => 'hootbirthday',
+							'contentDisposition' => 'inline'
+							],
 						])
 					->setViewVars(['title' => $data['title']])
 					->setSubject($data['subject'])
