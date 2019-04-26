@@ -24,7 +24,7 @@ $cakeDescription = 'Heart Of Oak Tattoo Manager';
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
+    <?//= $this->Html->meta('icon') ?>
 
 	<?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
@@ -44,17 +44,25 @@ $cakeDescription = 'Heart Of Oak Tattoo Manager';
     <meta name="apple-mobile-web-app-capable" content="yes">
     
     <!-- iPhone(first generation or 2G), iPhone 3G, iPhone 3GS -->
-	<link rel="apple-touch-icon" sizes="57x57" href="img/touch-icon-iphone.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="img/icons/touch-icon-iphone.png">
 	<!-- iPad and iPad mini @1x -->
-	<link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/icons/touch-icon-ipad.png">
 	<!-- iPhone 4, iPhone 4s, iPhone 5, iPhone 5c, iPhone 5s, iPhone 6, iPhone 6s, iPhone 7, iPhone 7s, iPhone8 -->
-	<link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/icons/touch-icon-iphone-retina.png">
 	<!-- iPad and iPad mini @2x -->
-	<link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/icons/touch-icon-ipad-retina.png">
 	<!-- iPad Pro -->
-	<link rel="apple-touch-icon" sizes="167x167" href="img/touch-icon-ipad-pro.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="img/icons/touch-icon-ipad-pro.png">
 	<!-- iPhone X, iPhone 8 Plus, iPhone 7 Plus, iPhone 6s Plus, iPhone 6 Plus -->
-	<link rel="apple-touch-icon" sizes="180x180" href="img/touch-icon-iphone-6-plus.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/icons/touch-icon-iphone-6-plus.png">
+	
+	<!-- Fav icons, Android and Microsoft -->
+	<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+	<link rel="manifest" href="img/icons/site.webmanifest">
+	<link rel="mask-icon" href="img/icons/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
     
 </head>
 <body>
