@@ -68,6 +68,7 @@ $cakeDescription = 'Heart Of Oak Tattoo Manager';
 <body>
 	<? if (!$nonav) :?>
     <nav class="top-bar expanded" data-topbar role="navigation">
+	    <!--
         <div class="title-area large-2 medium-3 columns menu-title">
 	        <h3><?//= $this->Html->link('<i class="fas fa-bars"></i>', [], ['escape' => false]); ?>
 	                <?= $this->Html->link($this->fetch('title'), [
@@ -75,6 +76,7 @@ $cakeDescription = 'Heart Of Oak Tattoo Manager';
 	            ]) ?>
 	        </h3>
         </div>
+        -->
         <div class="top-bar-section">
             <?= $cakeDescription ?>
         </div>

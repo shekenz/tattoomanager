@@ -4,13 +4,7 @@
  * @var \App\Model\Entity\Client $client
  */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Client list'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="clients form large-10 medium-9 columns content">
+<div class="clients form large-12 medium-12 columns content">
     <?= $this->Form->create($client) ?>
     <fieldset>
         <legend><?= __('Add Client') ?></legend>
@@ -33,10 +27,8 @@
             	'type' => 'select',
             	'options' => ['Woman', 'Man']
             ]);
-            echo $this->Form->control('artist', [
-	            'required' => true,
-            	'type' => 'hidden',
-            	'options' => ['default' => 'Shop']
+            echo $this->Form->hidden('artist', [
+            	'value' => 0
             ]);
             //echo $this->Form->control('creationdate');
         ?>
