@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\I18n\Time;
 use Session;
 use App\Form\MailForm;
+use Cake\Core\Configure;
 
 /**
  * Clients Controller
@@ -69,6 +70,27 @@ class ClientsController extends AppController
         //$this->set('referer', $this->referer());
     }
 
+	public function safeAdd()
+    {
+		$client = $this->Clients->newEntity();
+        if ($this->request->is('post')) {
+            $client = $this->Clients->patchEntity($client, $this->request->getData());
+            if ($this->Clients->save($client)) {
+                $this->Flash->success(__('The client has been saved.'));
+
+                return $this->redirect($this->request->session()->read('referer'));
+            }
+            if (Configure::read('debug')) {
+	            $this->Flash->error(__('ERROR : '.print_r($client->errors(), true)));
+	        } else {
+		        $this->Flash->error(__('The client could not be saved. Please, try again.'));
+			}
+        } else {
+	        $this->request->session()->write('referer', $this->referer());
+        }
+        $this->set(compact('client'));
+	    
+	}
     /**
      * Edit method
      *
