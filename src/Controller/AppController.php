@@ -54,20 +54,23 @@ class AppController extends Controller
 		        'controller' => 'Users',
 		        'action' => 'login'
 		    ],
+		    'loginRedirect' => [
+                'controller' => 'Clients',
+                'action' => 'index'
+            ],
 		    'logoutRedirect' => [
                 'controller' => 'Pages',
                 'action' => 'display',
                 'home'
             ]
         ]);
-        
-        // Berk c'est cheum et chelou ca, ca fait quoi ici ?
-        $this->set('nonav', false);
 
         /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
+        
+        $this->set('debug', Configure::read('debug'));
     }
 }

@@ -3,7 +3,9 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Clients'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Users'), ['controller' => 'users']) ?></li>
-        <li><?= $this->Html->link(__('About'), ['controller' => 'pages', 'action' => 'display', 'about']) ?></li>
+        <? if ($debug) {
+        	echo '<li>'.$this->Html->link(__('Cake Info'), ['controller' => 'pages', 'action' => 'display', 'about']).'</li>'; }
+        ?>
     </ul>
 </nav>
 <div class="clients form large-10 medium-9 columns content">	

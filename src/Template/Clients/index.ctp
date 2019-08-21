@@ -13,7 +13,9 @@
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Users'), ['controller' => 'users']) ?></li>
         <li><?= $this->Html->link(__('Group Mailing'), ['action' => 'groupMailing']) ?></li>
-        <li><?= $this->Html->link(__('About'), ['controller' => 'pages', 'action' => 'display', 'about']) ?></li>
+        <? if ($debug) {
+        	echo '<li>'.$this->Html->link(__('Cake Info'), ['controller' => 'pages', 'action' => 'display', 'about']).'</li>'; }
+        ?>
     </ul>
 </nav>
 <div class="clients index large-10 medium-9 columns content">

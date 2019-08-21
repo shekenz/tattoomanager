@@ -22,6 +22,4 @@ $this->assign('title', $this->name);
 
 <div class="index large-12 medium-12 columns content">
 	<?= $this->Html->link('<i class="fas fa-plus-circle"></i>', ['controller' => 'clients', 'action' => 'safeAdd'], ['class' =>' bigass incenter', 'escape' => false]) ?>
-	<br />
-	<?= ($debug) ? $this->Html->link('Client list', ['controller' => 'clients', 'action' => 'index'], ['class' => 'incenter']) : '';?>
 </div>

@@ -503,12 +503,20 @@ div.message.hidden {
 	vertical-align: middle;
 }
 
-.title-area a {
-	color: #aec;
-	margin-left: 10px;
+.top-bar-login a {
+	color: #fff;
 }
 
-.title-area a:hover {
+.top-bar-login a:hover {
+	color: #6edbe7;
+	text-decoration: none;
+}
+
+.top-bar-login {
+	float:left;
+	position:fixed;
+	z-index:2000;
+	padding-left: 10px;
 	color: #fff;
 }
 

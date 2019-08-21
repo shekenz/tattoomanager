@@ -7,7 +7,7 @@
 <div class="clients form large-12 medium-12 columns content">
     <?= $this->Form->create($client) ?>
     <fieldset>
-        <legend><?= __('Add Client') ?></legend>
+        <legend><?= __('New Client') ?></legend>
         <?php
 	        echo $this->Form->control('firstname', [
 	            'label' => 'First name'

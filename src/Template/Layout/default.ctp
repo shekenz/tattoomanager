@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Heart Of Oak Tattoo Manager';
+$cakeDescription = 'Heart Of Oak Manager';
 ?>
 <!DOCTYPE html>
 <html>
@@ -66,33 +66,22 @@ $cakeDescription = 'Heart Of Oak Tattoo Manager';
     
 </head>
 <body>
-	<? if (!$nonav) :?>
     <nav class="top-bar expanded" data-topbar role="navigation">
-	    <!--
-        <div class="title-area large-2 medium-3 columns menu-title">
-	        <h3><?//= $this->Html->link('<i class="fas fa-bars"></i>', [], ['escape' => false]); ?>
-	                <?= $this->Html->link($this->fetch('title'), [
-	                'controller' => $this->name, 'action' => 'index'
-	            ]) ?>
-	        </h3>
-        </div>
-        -->
-        <? $username = $this->request->session()->read('Auth.User.username'); ?>
-        <? if ($username) :?>
-         <div class="title-area large-2 medium-3 columns menu-title">
-	        <?= $username;
-		    echo $this->Html->link('(logout)', [
-                'controller' => 'Users', 'action' => 'logout'
-	        ]) ?>
-
-        </div>
-        <? endif; ?>
-        <div class="top-bar-section">
+        
+        <span class="top-bar-login">
+			<? $username = $this->request->session()->read('Auth.User.username');
+			if ($username) {
+			    echo $username.'&nbsp;&nbsp;';
+			    echo $this->Html->link('(logout <i class="fas fa-sign-out-alt"></i>)', ['controller' => 'Users', 'action' => 'logout' ], ['escape' => false]);
+			} else {
+				echo $this->Html->link('Login', ['controller' => 'Users', 'action' => 'login' ]);
+			}
+			?>
+        </span>
+	    <div class="top-bar-section">
             <?= $cakeDescription ?>
         </div>
     </nav>
-    <? endif; ?>
-    <? //debug($this); ?>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
