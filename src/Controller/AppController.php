@@ -42,10 +42,26 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler', [
-            'enableBeforeRedirect' => false,
-        ]);
+        // $this->loadComponent('RequestHandler', [
+//             'enableBeforeRedirect' => false,
+//         ]);
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth',[
+	        'authenticate' => [
+		        'Form'
+	        ],
+	        'loginAction' => [
+		        'controller' => 'Users',
+		        'action' => 'login'
+		    ],
+		    'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'display',
+                'home'
+            ]
+        ]);
+        
+        // Berk c'est cheum et chelou ca, ca fait quoi ici ?
         $this->set('nonav', false);
 
         /*

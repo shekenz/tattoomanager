@@ -77,6 +77,16 @@ $cakeDescription = 'Heart Of Oak Tattoo Manager';
 	        </h3>
         </div>
         -->
+        <? $username = $this->request->session()->read('Auth.User.username'); ?>
+        <? if ($username) :?>
+         <div class="title-area large-2 medium-3 columns menu-title">
+	        <?= $username;
+		    echo $this->Html->link('(logout)', [
+                'controller' => 'Users', 'action' => 'logout'
+	        ]) ?>
+
+        </div>
+        <? endif; ?>
         <div class="top-bar-section">
             <?= $cakeDescription ?>
         </div>

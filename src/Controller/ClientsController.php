@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\I18n\Time;
 use Session;
 use App\Form\MailForm;
+use Cake\Event\Event;
 
 /**
  * Clients Controller
@@ -15,6 +16,11 @@ use App\Form\MailForm;
  */
 class ClientsController extends AppController
 {
+	
+	public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->Auth->allow('safeAdd');
+    }
 
     /**
      * Index method
