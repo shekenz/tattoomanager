@@ -5,7 +5,6 @@ use App\Controller\AppController;
 use Cake\I18n\Time;
 use Session;
 use App\Form\MailForm;
-use Cake\Core\Configure;
 
 /**
  * Clients Controller

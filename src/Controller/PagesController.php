@@ -57,6 +57,8 @@ class PagesController extends AppController
         }
         $this->set(compact('page', 'subpage'));
         $this->set('nonav', true);
+        debug(Configure::read('debug'));
+        $this->set('debug', Configure::read('debug'));
 
         try {
             $this->render(implode('/', $path));
