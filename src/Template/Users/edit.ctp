@@ -25,7 +25,6 @@
             echo $this->Form->control('firstname');
             echo $this->Form->control('lastname');
             echo $this->Form->control('email');
-            echo $this->Form->control('password');
             echo $this->Form->control('role', [
 	            'required' => true,
             	'type' => 'select',

@@ -369,6 +369,7 @@ fieldset legend {
     float: right;
     text-transform: uppercase;
     box-shadow: none;
+    
 }
 
 .form button:hover, .form button:focus {
@@ -470,8 +471,12 @@ div.message.hidden {
 
 .content h3 {
     color: #be140b;
-    padding-bottom: 0.5rem;
-    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+    border-bottom: 2px solid #be140b;
+
+    margin-bottom: 10px;
 }
 
 .content h4 {
@@ -490,6 +495,8 @@ div.message.hidden {
 }
 
 /*----- CUSTOM CSS BY SHEKENZ -----*/
+
+/* base-color #116d76 */
 
 .title-area {
 	height: 45px;
@@ -577,6 +584,10 @@ table tr:nth-of-type(even) {
     background-color: #F5F5F5;
 }
 
+table tr.pending {
+	background-color: #ffa3a3;
+}
+
 .incenter {
 	display: block;
 	margin: auto;
@@ -603,6 +614,20 @@ table tr:nth-of-type(even) {
 	margin: 20px 0px;
 }
 
+#action-menu {
+	background-color: transparent;
+	margin-bottom: 10px;
+}
+
+#action-menu .button {
+	margin: 0px;
+	padding: 10px;
+}
+
+h3 {
+	border-bottom: 1px;
+}
+
 /*--- Group mailing ---*/
 
 .floatContainer {
@@ -617,6 +642,14 @@ table tr:nth-of-type(even) {
 
 #filterList div {
 	background: #ffdc10;
+}
+
+/*--- Button ---*/
+
+.form button[type="submit"].revamped {
+	background: transparent;
+	color: #000;
+	border: 1px solid black;
 }
 
 

@@ -34,6 +34,7 @@ class UsersTable extends Table
         $this->setTable('users');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+        $this->hasMany('Clients')->setForeignKey('user_id');
     }
 
     /**

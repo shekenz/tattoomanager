@@ -57,6 +57,7 @@
             		'No rating'
             	]
             ]);
+            echo $this->Form->control('pending');
             //echo $this->Form->control('creationdate');
         ?>
     </fieldset>

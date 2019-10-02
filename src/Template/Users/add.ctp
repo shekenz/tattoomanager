@@ -25,6 +25,7 @@
             	'type' => 'select',
             	'options' => ['Super Admin', 'Admin', 'User']
             ]);
+            echo $this->Form->control('artist');
             echo $this->Form->control('birthdate', [
 	            'label' => 'Birthday',
 	            'minYear' => date('Y') - 100
@@ -32,10 +33,12 @@
         ?>
     </fieldset>
     <?= $this->Form->button('CANCEL', array(
-        'class' => 'cancel button',
+        'class' => 'revamped',
         'type' => 'button',
         'onclick' => 'location.href=\''.$this->request->session()->read('referer').'\''
     )); ?>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), [
+		'class' => 'revamped'
+	]) ?>
     <?= $this->Form->end() ?>
 </div>

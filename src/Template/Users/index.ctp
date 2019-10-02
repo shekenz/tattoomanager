@@ -3,11 +3,13 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
+ 
+ $roles = ['Super Admin', 'Admin', 'User'] // Need to be in a table and editable + ACL !!
+ 
 ?>
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
+        <li class="heading"><?= __('Menu') ?></li>
         <li><?= $this->Html->link(__('Clients'), ['controller' => 'clients']) ?></li>
         <li><?= $this->Html->link(__('Group Mailing'), ['controller' => 'clients', 'action' => 'groupMailing']) ?></li>
         <? if ($debug) {
@@ -17,6 +19,11 @@
 </nav>
 <div class="users index large-10 medium-9 columns content">
     <h3><?= __('Users') ?></h3>
+    
+    <div id="action-menu">
+		<?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button']) ?>
+		</div>
+    
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -25,6 +32,7 @@
                 <th scope="col"><?= $this->Paginator->sort('firstname', 'Name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('role') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('artist') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('birthdate', 'Birth Date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('creationdate', 'Created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -37,7 +45,8 @@
                 <td><?= h($user->username) ?></td>
                 <td><?= h($user->firstname).' '.h($user->lastname)?></td>
                 <td><?= h($user->email) ?></td>
-                <td><?= $this->Number->format($user->role) ?></td>
+                <td><?= $roles[$this->Number->format($user->role)] ?></td>
+                <td><?= (h($user->artist)) ? 'Yes' : 'No' ?></td>
                 <td><?= h($user->birthdate) ?></td>
                 <td><?= h($user->creationdate) ?></td>
                 <td class="actions">

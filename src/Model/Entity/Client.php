@@ -34,8 +34,9 @@ class Client extends Entity
         'email' => true,
         'birthdate' => true,
         'gender' => true,
-        'artist' => true,
+        'user_id' => true,
         'creationdate' => true,
-        'rating' => true
+        'rating' => true,
+        'pending' => true,
     ];
 }

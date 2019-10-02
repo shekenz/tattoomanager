@@ -30,6 +30,9 @@
             echo $this->Form->hidden('artist', [
             	'value' => 0
             ]);
+            echo $this->Form->hidden('pending', [
+            	'value' => 1
+            ]);
             //echo $this->Form->control('creationdate');
         ?>
     </fieldset>

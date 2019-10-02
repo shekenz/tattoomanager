@@ -6,6 +6,7 @@ use Cake\I18n\Time;
 use Session;
 use App\Form\MailForm;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Clients Controller
@@ -51,6 +52,52 @@ class ClientsController extends AppController
 
         $this->set('client', $client);
     }
+    
+    /**
+     * fblvt method
+     *
+     * [ Facebook LifeTime Value ]
+     * Display clients as a CSV list compatible with FB LTV
+     */
+
+    public function export()
+    {
+
+	    $this->viewBuilder()->setClassName('CsvView.Csv');
+	    $query = $this->Clients->find('all', ['fields' => ['id', 'firstname', 'name', 'phone', 'email', 'birthdate', 'gender']])	
+					->where(['Clients.email !=' => '' ])
+					->order(['firstname' => 'ASC'])
+					->order(['name' => 'ASC']);
+	
+	    $data = [];
+	    $_serialize = 'data';
+	    $_header = ['id', 'lastname', 'firstname', 'phone', 'email', 'age', 'gender'];
+	    
+		foreach ($query as $client) {
+			if($client->gender) {
+				$gender = 'M';
+			} else {
+				$gender = 'W';
+			}
+			
+			// Calculating Age
+			$then = \DateTime::createFromFormat("n/j/y", $client->birthdate);
+			$diff = $then->diff(new \DateTime());
+			$age = $diff->format("%y");
+			
+			array_push($data, [
+				$client->id,
+				$client->name,
+				$client->firstname,
+				$client->phone,
+				$client->email,
+				$age,
+				$gender
+				]);
+		}
+		
+		$this->set(compact('data', '_serialize', '_header'));
+	}
 
     /**
      * Add method
@@ -58,7 +105,7 @@ class ClientsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
+    {	    
         $client = $this->Clients->newEntity();
         if ($this->request->is('post')) {
             $client = $this->Clients->patchEntity($client, $this->request->getData());
@@ -69,10 +116,24 @@ class ClientsController extends AppController
             }
             $this->Flash->error(__('The client could not be saved. Please, try again.'));
         } else {
+	        
+	        $users = TableRegistry::getTableLocator()
+	    	->get('Users')
+	    	->find()
+	    	->select('username')
+			->where(['artist =' => 1])
+	    	->order(['username' => 'DESC']);
+	    	
+		    $userList = array();
+		    foreach($users AS $user) {
+			    array_push($userList, $user['username']);
+		    }
+		    
+		    $this->set('userList', $userList);
+	        
 	        $this->request->session()->write('referer', $this->referer());
         }
         $this->set(compact('client'));
-        //$this->set('referer', $this->referer());
     }
 
 	public function safeAdd()

@@ -9,8 +9,7 @@
 ?>
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
+        <li class="heading"><?= __('Menu') ?></li>
         <li><?= $this->Html->link(__('Users'), ['controller' => 'users']) ?></li>
         <li><?= $this->Html->link(__('Group Mailing'), ['action' => 'groupMailing']) ?></li>
         <? if ($debug) {
@@ -37,6 +36,11 @@
 	</div>
 	<? endif; ?>
     
+    <div id="action-menu">
+		<?= $this->Html->link(__('New Client'), ['action' => 'add'], ['class' => 'button']) ?>
+		<?= $this->Html->link(__('Export CSV'), ['action' => 'export'], ['class' => 'button']); ?>
+		</div>
+    
     <table cellpadding="0" cellspacing="0" class="table-custom">
         <thead>
             <tr>
@@ -54,7 +58,7 @@
         </thead>
         <tbody>
             <?php foreach ($clients as $client): ?>
-            <tr>
+            <tr<?= (h($client->pending)) ? ' class="pending"' : ''?>>
                 <td><?= $this->Number->format($client->id) ?></td>
 <!--                 <td><?= h($client->name) ?></td> -->
                 <td><?= $this->Html->link(h($client->firstname)." ".h($client->name), ['action' => 'view', $client->id]) ?></td>
@@ -73,11 +77,8 @@
 					}
 	                //= h($client->birthdate) 
 	            	?></td>
-	            <td><?
-		            $typeList = ['Shop', 'Gil', 'Shekenz', 'Vincent', 'Cazimir', 'Bleck', 'Guest'];
-		            if (isset($client->artist)) {
-		            	echo $typeList[$client->artist];
-		            }
+	            <td><?=
+		            $this->Number->format($client->user_id);
 		            ?></td>
 		            <td><?= ($client->rating > 5) ? '<span style="color:#be140b">&#x25C9</span>' : '<span style="color:#1798A5">&#x25C9</span>'; ?></td>
                 <td class="actions last">

@@ -36,7 +36,7 @@
             echo $this->Form->control('artist', [
 	            'required' => true,
             	'type' => 'select',
-            	'options' => ['Shop', 'Gil', 'Shekenz', 'Vincent', 'Cazimir', 'Bleck', 'Guest']
+            	'options' => $userList
             ]);
             //echo $this->Form->control('creationdate');
         ?>
