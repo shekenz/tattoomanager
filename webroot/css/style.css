@@ -652,4 +652,10 @@ h3 {
 	border: 1px solid black;
 }
 
+/*--- Misc. ---*/
+
+.warning {
+	color: red;
+}
+
 

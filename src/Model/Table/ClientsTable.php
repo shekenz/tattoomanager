@@ -87,9 +87,9 @@ class ClientsTable extends Table
             //->notEmpty('creationdate');
             
         $validator
-            ->integer('artist')
-            ->requirePresence('artist', true)
-            ->notEmpty('artist', true);
+            ->integer('user_id')
+            ->requirePresence('user_id', true)
+            ->notEmpty('user_id', true);
 
         return $validator;
     }

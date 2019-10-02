@@ -39,10 +39,11 @@
             	'type' => 'select',
             	'options' => ['Woman', 'Man']
             ]);
-            echo $this->Form->control('artist', [
+            echo $this->Form->control('user_id', [
+	            'label' => 'Artist',
 	            'required' => true,
             	'type' => 'select',
-            	'options' => ['Shop', 'Gil', 'Shekenz', 'Vincent', 'Cazimir', 'Bleck', 'Guest']
+            	'options' => $userList
             ]);
             echo $this->Form->control('rating', [
 	            'required' => true,

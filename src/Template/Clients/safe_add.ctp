@@ -27,8 +27,8 @@
             	'type' => 'select',
             	'options' => ['Woman', 'Man']
             ]);
-            echo $this->Form->hidden('artist', [
-            	'value' => 0
+            echo $this->Form->hidden('user_id', [
+            	'value' => 1
             ]);
             echo $this->Form->hidden('pending', [
             	'value' => 1

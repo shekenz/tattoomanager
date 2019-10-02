@@ -33,12 +33,15 @@
             	'type' => 'select',
             	'options' => ['Woman', 'Man']
             ]);
-            echo $this->Form->control('artist', [
+            echo $this->Form->control('user_id', [
+	            'label' => 'Artist',
 	            'required' => true,
             	'type' => 'select',
             	'options' => $userList
             ]);
-            //echo $this->Form->control('creationdate');
+            echo $this->Form->hidden('pending', [
+            	'value' => 0
+            ]);
         ?>
     </fieldset>
     <?= $this->Form->button('CANCEL', array(

@@ -77,8 +77,13 @@
 					}
 	                //= h($client->birthdate) 
 	            	?></td>
-	            <td><?=
-		            $this->Number->format($client->user_id);
+	            <td><?
+		            $user_id = $this->Number->format($client->user_id);
+		            if(array_key_exists($user_id, $userList)) {
+			            echo $userList[$user_id];
+		            } else {
+			            echo '<span class="warning">None</span>';
+		            }
 		            ?></td>
 		            <td><?= ($client->rating > 5) ? '<span style="color:#be140b">&#x25C9</span>' : '<span style="color:#1798A5">&#x25C9</span>'; ?></td>
                 <td class="actions last">

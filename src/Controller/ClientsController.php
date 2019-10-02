@@ -7,6 +7,7 @@ use Session;
 use App\Form\MailForm;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
 
 /**
  * Clients Controller
@@ -30,6 +31,19 @@ class ClientsController extends AppController
      */
     public function index()
     {
+	    
+	    $users = TableRegistry::getTableLocator()
+	    	->get('Users')
+	    	->find()
+	    	->select(['id', 'username'])
+	    	->order(['username' => 'DESC']);
+	    	
+	    $userList = array();
+	    foreach($users AS $user) {
+		    $userList[$user['id']] = $user['username'];
+	    }
+	    $this->set('userList', $userList);
+	    
         $clients = $this->paginate($this->Clients, [
         	'order' => [
             'Clients.creationdate' => 'desc'
@@ -107,6 +121,21 @@ class ClientsController extends AppController
     public function add()
     {	    
         $client = $this->Clients->newEntity();
+        
+        $users = TableRegistry::getTableLocator()
+	    	->get('Users')
+	    	->find()
+	    	->select(['id', 'username'])
+			->where(['artist =' => 1])
+	    	->order(['username' => 'DESC']);
+	    	
+	    $userList = array();
+	    foreach($users AS $user) {
+		    $userList[$user['id']] = $user['username'];
+	    }
+		    
+		$this->set('userList', $userList);
+        
         if ($this->request->is('post')) {
             $client = $this->Clients->patchEntity($client, $this->request->getData());
             if ($this->Clients->save($client)) {
@@ -114,22 +143,14 @@ class ClientsController extends AppController
 
                 return $this->redirect($this->request->session()->read('referer'));
             }
-            $this->Flash->error(__('The client could not be saved. Please, try again.'));
+            if (Configure::read('debug')) {
+	            $this->Flash->error(__('ERROR : '.print_r($client->errors(), true)));
+	        } else {
+		        $this->Flash->error(__('The client could not be saved. Please, try again.'));
+			}
         } else {
 	        
-	        $users = TableRegistry::getTableLocator()
-	    	->get('Users')
-	    	->find()
-	    	->select('username')
-			->where(['artist =' => 1])
-	    	->order(['username' => 'DESC']);
-	    	
-		    $userList = array();
-		    foreach($users AS $user) {
-			    array_push($userList, $user['username']);
-		    }
-		    
-		    $this->set('userList', $userList);
+	        
 	        
 	        $this->request->session()->write('referer', $this->referer());
         }
@@ -169,6 +190,21 @@ class ClientsController extends AppController
         $client = $this->Clients->get($id, [
             'contain' => []
         ]);
+        
+        $users = TableRegistry::getTableLocator()
+	    	->get('Users')
+	    	->find()
+	    	->select(['id', 'username'])
+			->where(['artist =' => 1])
+	    	->order(['username' => 'DESC']);
+	    	
+	    $userList = array();
+	    foreach($users AS $user) {
+		    $userList[$user['id']] = $user['username'];
+	    }
+		    
+		$this->set('userList', $userList);
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
             $client = $this->Clients->patchEntity($client, $this->request->getData());
             if ($this->Clients->save($client)) {
@@ -176,10 +212,15 @@ class ClientsController extends AppController
 
                 return $this->redirect($this->request->session()->read('referer'));
             }
-            $this->Flash->error(__('The client could not be saved. Please, try again.'));
+            if (Configure::read('debug')) {
+	            $this->Flash->error(__('ERROR : '.print_r($client->errors(), true)));
+	        } else {
+		        $this->Flash->error(__('The client could not be saved. Please, try again.'));
+			}
         } else {
 	        $this->request->session()->write('referer', $this->referer());
         }
+        
         $this->set(compact('client'));
         //$this->set('referer', $this->referer());
     }
