@@ -521,7 +521,7 @@ div.message.hidden {
 
 .top-bar-login {
 	float:left;
-	position:fixed;
+	position:absolute;
 	z-index:2000;
 	padding-left: 10px;
 	color: #fff;
