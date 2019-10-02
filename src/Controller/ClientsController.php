@@ -90,8 +90,8 @@ class ClientsController extends AppController
 	    }
 	    
 	    $query = $this->Clients->find('all', ['fields' => ['id', 'firstname', 'name', 'phone', 'email', 'birthdate', 'gender', 'user_id']])	
-					->order(['firstname' => 'ASC'])
-					->order(['name' => 'ASC']);
+					->order(['name' => 'DESC'])
+					->order(['firstname' => 'DESC']);
 	
 	    $data = [];
 	    $_serialize = 'data';
