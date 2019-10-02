@@ -68,24 +68,34 @@ class ClientsController extends AppController
     }
     
     /**
-     * fblvt method
-     *
-     * [ Facebook LifeTime Value ]
-     * Display clients as a CSV list compatible with FB LTV
+     * CSV method
+     * 
+     * Save client list in CSV
      */
 
     public function export()
     {
 
 	    $this->viewBuilder()->setClassName('CsvView.Csv');
-	    $query = $this->Clients->find('all', ['fields' => ['id', 'firstname', 'name', 'phone', 'email', 'birthdate', 'gender']])	
-					->where(['Clients.email !=' => '' ])
+	    
+	    $users = TableRegistry::getTableLocator()
+	    	->get('Users')
+	    	->find()
+	    	->select(['id', 'username'])
+	    	->order(['username' => 'DESC']);
+	    	
+	    $userList = array();
+	    foreach($users AS $user) {
+		    $userList[$user['id']] = $user['username'];
+	    }
+	    
+	    $query = $this->Clients->find('all', ['fields' => ['id', 'firstname', 'name', 'phone', 'email', 'birthdate', 'gender', 'user_id']])	
 					->order(['firstname' => 'ASC'])
 					->order(['name' => 'ASC']);
 	
 	    $data = [];
 	    $_serialize = 'data';
-	    $_header = ['id', 'lastname', 'firstname', 'phone', 'email', 'age', 'gender'];
+	    $_header = ['id', 'lastname', 'firstname', 'phone', 'email', 'age', 'gender', 'artist'];
 	    
 		foreach ($query as $client) {
 			if($client->gender) {
@@ -93,6 +103,12 @@ class ClientsController extends AppController
 			} else {
 				$gender = 'W';
 			}
+			
+			if(array_key_exists($client->user_id, $userList)) {
+			            $artist = $userList[$client->user_id];
+		            } else {
+			            $artist = 'None';
+		            }
 			
 			// Calculating Age
 			$then = \DateTime::createFromFormat("n/j/y", $client->birthdate);
@@ -106,7 +122,8 @@ class ClientsController extends AppController
 				$client->phone,
 				$client->email,
 				$age,
-				$gender
+				$gender,
+				$artist
 				]);
 		}
 		
