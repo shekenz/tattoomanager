@@ -30,8 +30,8 @@
             	'type' => 'select',
             	'options' => ['Super Admin', 'Admin', 'User']
             ]);
+            echo $this->Form->control('artist');
             echo $this->Form->control('birthdate');
-            echo $this->Form->control('creationdate');
         ?>
     </fieldset>
     <?= $this->Form->button('CANCEL', array(
