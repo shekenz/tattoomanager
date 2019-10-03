@@ -29,7 +29,7 @@ class ClientsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index()  //------------------------------------------------------------------------------------------------- INDEX
     {
 	    
 	    $users = TableRegistry::getTableLocator()
@@ -58,7 +58,7 @@ class ClientsController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id = null)  //----------------------------------------------------------------------------------------- VIEW
     {
         $client = $this->Clients->get($id, [
             'contain' => []
@@ -73,7 +73,7 @@ class ClientsController extends AppController
      * Save client list in CSV
      */
 
-    public function export()
+    public function export() //------------------------------------------------------------------------------------------------ EXPORT
     {
 
 	    $this->viewBuilder()->setClassName('CsvView.Csv');
@@ -95,7 +95,7 @@ class ClientsController extends AppController
 	
 	    $data = [];
 	    $_serialize = 'data';
-	    $_header = ['id', 'lastname', 'firstname', 'phone', 'email', 'age', 'gender', 'artist'];
+	    $_header = ['id', 'lastname', 'firstname', 'phone', 'email','bday (YYYY-MM-DD)', 'age', 'gender', 'artist'];
 	    
 		foreach ($query as $client) {
 			if($client->gender) {
@@ -121,6 +121,7 @@ class ClientsController extends AppController
 				$client->firstname,
 				$client->phone,
 				$client->email,
+				$then->format('Y-m-d'),
 				$age,
 				$gender,
 				$artist
@@ -135,7 +136,7 @@ class ClientsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add()  //----------------------------------------------------------------------------------------------------- ADD
     {	    
         $client = $this->Clients->newEntity();
         
@@ -174,7 +175,7 @@ class ClientsController extends AppController
         $this->set(compact('client'));
     }
 
-	public function safeAdd()
+	public function safeAdd()  //-------------------------------------------------------------------------------------------- SAFE ADD
     {
 		$client = $this->Clients->newEntity();
         if ($this->request->is('post')) {
@@ -202,7 +203,7 @@ class ClientsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($id = null)  //----------------------------------------------------------------------------------------- EDIT
     {
         $client = $this->Clients->get($id, [
             'contain' => []
@@ -249,7 +250,7 @@ class ClientsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null)  //------------------------------------------------------------------------------------- DELETE
     {
         $this->request->allowMethod(['post', 'delete']);
         $client = $this->Clients->get($id);
@@ -262,7 +263,7 @@ class ClientsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    public function groupMailing($id = null)
+    public function groupMailing($id = null)  //------------------------------------------------------------------------ GROUP MAILING
     {
 	    $mail = new MailForm();
 	    
